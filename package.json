@@ -1,0 +1,38 @@
+{
+  "name": "nito-backend",
+  "version": "1.0.0",
+  "description": "Backend del Proyecto Final de Practicum",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "start": "node ./backend/app.js",
+    "dev": "nodemon ./backend/app.js",
+    "ghdeploy": "gh-pages -d build",
+    "deploy": "npm run build && scp -r -i path/to/ssh/key ./build/* bruno.lanrrain.e@34.125.199.101:/home/bruno_larrain_e/frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brularre/nito-backend.git"
+  },
+  "author": "Brularre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brularre/nito-backend/issues"
+  },
+  "homepage": "https://github.com/Brularre/nito-backend#readme",
+  "devDependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1",
+    "validator": "^13.9.0"
+  }
+}
