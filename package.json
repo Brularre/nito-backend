@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
-    "start": "node ./backend/app.js",
-    "dev": "nodemon ./backend/app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "ghdeploy": "gh-pages -d build",
     "deploy": "npm run build && scp -r -i path/to/ssh/key ./build/* bruno.lanrrain.e@34.125.199.101:/home/bruno_larrain_e/frontend"
   },

@@ -28,12 +28,8 @@ const WorkerSchema = new Schema({
     default: 'No ingresado',
   },
   location: {
-    type: String,
-    default: 'No ingresado',
-  },
-  badges: {
     type: [String],
-    default: [],
+    default: 'No ingresado',
   },
   rating: {
     type: [Number],
