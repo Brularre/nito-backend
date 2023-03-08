@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-// Models
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
+// Routers
 const workersRouter = require('./routes/workers');
 
 const app = express();
@@ -19,12 +21,19 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error: '));
 db.once('open', () => console.log('Connected successfully to database'));
 
+// Logger de solicitudes
+app.use(requestLogger);
+
 // Rutas
 app.get('/', (req, res) => {
   res.send('¡Bienvenido a Nito!');
 });
 
 app.use('/workers', workersRouter);
+
+// Control de errores
+
+app.use(errorLogger);
 
 app.listen(PORT, () => {
   console.log(`Sirviendo en Puerto ${PORT}`);
