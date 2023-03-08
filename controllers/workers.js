@@ -4,7 +4,21 @@ const NotFoundError = require('../errors/not-found-err');
 
 function getWorkers(req, res, next) {
   Worker.find({})
-    .then((users) => res.send({ data: users }))
+    .then((workers) => res.send({ data: workers }))
+    .catch(next);
+}
+
+function getWorker(req, res, next) {
+  Worker.findById(req.params.id)
+    .orFail(() => {
+      throw new NotFoundError('No se encuentra especialista con esa id');
+    })
+    .then((worker) => {
+      if (!worker) {
+        throw new RequestError('Hay un problema con la solicitud');
+      }
+      res.send({ data: worker });
+    })
     .catch(next);
 }
 
@@ -35,4 +49,4 @@ function deleteWorker(req, res, next) {
     .catch(next);
 }
 
-module.exports = { getWorkers, createWorker, deleteWorker };
+module.exports = { getWorkers, getWorker, createWorker, deleteWorker };
