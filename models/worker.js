@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const isURL = require('validator/lib/isURL');
 
 const { Schema } = mongoose;
 
@@ -19,11 +20,15 @@ const WorkerSchema = new Schema({
     type: String,
     default: 'No ingresado',
   },
-  telephone: {
+  link: {
     type: String,
     default: 'No ingresado',
+    validate: {
+      validator: (v) => isURL(v),
+      message: 'Por favor intenta una URL Valida.',
+    },
   },
-  link: {
+  telephone: {
     type: String,
     default: 'No ingresado',
   },
@@ -31,13 +36,23 @@ const WorkerSchema = new Schema({
     type: [String],
     default: 'No ingresado',
   },
-  rating: {
-    type: [Number],
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
+  reviews: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'user',
     default: [],
   },
-  review: {
-    type: [String],
+  ratings: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'user',
     default: [],
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

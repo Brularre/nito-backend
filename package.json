@@ -21,18 +21,17 @@
     "url": "https://github.com/Brularre/nito-backend/issues"
   },
   "homepage": "https://github.com/Brularre/nito-backend#readme",
-  "devDependencies": {
-    "crypto": "^1.0.1",
-    "dotenv": "^16.0.3",
-    "eslint": "^8.31.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "nodemon": "^2.0.20"
-  },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^6.9.1",
+    "mongoose": "^7.0.1",
     "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "nodemon": "^2.0.21"
   }
 }
