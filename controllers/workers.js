@@ -1,6 +1,7 @@
 const Worker = require('../models/worker');
 const RequestError = require('../errors/request-err');
 const NotFoundError = require('../errors/not-found-err');
+const ValidationError = require('../errors/validation-err');
 
 function getWorkers(req, res, next) {
   Worker.find({})
@@ -35,6 +36,35 @@ function createWorker(req, res, next) {
     .catch(next);
 }
 
+function editWorker(req, res, next) {
+  const { name, area, city, email, telephone, link, location } = req.body;
+  Worker.findByIdAndUpdate(
+    req.params.id,
+    {
+      name,
+      area,
+      city,
+      email,
+      telephone,
+      link,
+      location,
+    },
+    { runValidators: true, new: true },
+  )
+    .then((user) => {
+      if (!user) {
+        throw new RequestError('Hay un problema con la solicitud');
+      }
+      res.send({ data: user });
+    })
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        throw new ValidationError('Hay un problema con los datos');
+      }
+      next();
+    });
+}
+
 function deleteWorker(req, res, next) {
   Worker.findByIdAndRemove(req.params.id)
     .orFail(() => {
@@ -49,4 +79,10 @@ function deleteWorker(req, res, next) {
     .catch(next);
 }
 
-module.exports = { getWorkers, getWorker, createWorker, deleteWorker };
+module.exports = {
+  getWorkers,
+  getWorker,
+  createWorker,
+  editWorker,
+  deleteWorker,
+};
