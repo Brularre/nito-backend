@@ -2,8 +2,8 @@ const joi = require('joi');
 
 const workerValidation = joi.object({
   name: joi.string().min(2).max(40).required(),
-  area: joi.string().required,
-  city: joi.string().required,
+  area: joi.string().required(),
+  city: joi.string().required(),
   email: joi.string().email(),
   link: joi.string(),
   telephone: joi.string(),

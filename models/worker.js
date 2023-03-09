@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const isURL = require('validator/lib/isURL');
 
 const { Schema } = mongoose;
 
@@ -23,10 +22,6 @@ const WorkerSchema = new Schema({
   link: {
     type: String,
     default: 'No ingresado',
-    validate: {
-      validator: (v) => isURL(v),
-      message: 'Por favor intenta una URL Valida.',
-    },
   },
   telephone: {
     type: String,

@@ -12,7 +12,7 @@ Este proyecto fue desarrollado como Proyecto Final para el curso de Web Developm
 
 ## Para ejecutar
 
-npm run dev
+npm run start
 
 ## Para seeding en la base de datos
 
@@ -26,10 +26,11 @@ node seeds/index.js
 ## Versiones
 
 1.0 - Feat: Agrega esqueleto base backend.
+2.0 - Feat: Agrega rutas, controllers, middlewares, logger, control básico de errores, validación básica.
 
 ## Mapa de Ruta
 
-El proyecto se considerará terminado una vez entregado con todas las correcciones pertinentes. En un futuro se espera incluir reservaciones y calendarización.
+El proyecto se considerará terminado una vez entregado con todas las correcciones pertinentes. En un futuro se espera incluir reservaciones, reseñas y otras funcionalidades.
 
 ## Contact
 

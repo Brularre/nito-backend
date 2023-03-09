@@ -33,7 +33,9 @@ function createWorker(req, res, next) {
       }
       res.send(worker);
     })
-    .catch(next);
+    .catch((err) => {
+      next(err);
+    });
 }
 
 function editWorker(req, res, next) {
