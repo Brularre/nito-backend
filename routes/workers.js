@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const checkAuth = require('../middlewares/auth');
+const workerValidator = require('../middlewares/workerValidator');
 
 const {
   getWorkers,
@@ -10,8 +12,8 @@ const {
 
 router.get('/', getWorkers);
 router.get('/:id', getWorker);
-router.post('/', createWorker);
-router.patch('/:id', editWorker);
-router.delete('/:id', deleteWorker);
+router.post('/', checkAuth, workerValidator, createWorker);
+router.patch('/:id', checkAuth, workerValidator, editWorker);
+router.delete('/:id', checkAuth, deleteWorker);
 
 module.exports = router;

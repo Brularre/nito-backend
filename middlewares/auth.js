@@ -19,11 +19,10 @@ function checkAuth(req, res, next) {
   try {
     payload = jwt.verify(token, JWT_SECRET);
     req.user = payload;
-    next();
+    return next();
   } catch (err) {
     return handleAuthError();
-  }
-  return null;
+  }  
 }
 
 module.exports = checkAuth;
