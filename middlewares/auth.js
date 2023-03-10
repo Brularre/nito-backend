@@ -22,7 +22,7 @@ function checkAuth(req, res, next) {
     return next();
   } catch (err) {
     return handleAuthError();
-  }  
+  }
 }
 
 module.exports = checkAuth;
