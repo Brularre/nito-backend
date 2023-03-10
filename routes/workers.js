@@ -10,6 +10,12 @@ const {
   deleteWorker,
 } = require('../controllers/workers');
 
+const {
+  getReviewsByWorkerId,
+  createReview,
+  deleteReview,
+} = require('../controllers/reviews');
+
 router.get('/', getWorkers);
 router.get('/:id', getWorker);
 router.post('/', checkAuth, (req, res, next) => {
@@ -29,5 +35,9 @@ router.patch('/:id', checkAuth, (req, res, next) => {
   return editWorker(req, res, next);
 });
 router.delete('/:id', checkAuth, deleteWorker);
+
+router.get('/:id/reviews', getReviewsByWorkerId);
+router.post('/:id/reviews', createReview);
+router.delete('/:id/reviews/:id', deleteReview);
 
 module.exports = router;
