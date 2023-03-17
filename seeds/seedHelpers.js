@@ -33,8 +33,8 @@ const ratings = [1, 2, 3, 4, 5];
 
 function generateRandomPosition() {
   const bounds = [
-    [-33.089, -71.6934],
-    [-33.0039, -71.4946],
+    [-33.060287, -71.617523],
+    [-32.956428, -71.496355],
   ];
   const lat = bounds[0][0] + Math.random() * (bounds[1][0] - bounds[0][0]);
   const lng = bounds[0][1] + Math.random() * (bounds[1][1] - bounds[0][1]);

@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const ReviewSchema = new mongoose.Schema({
   text: {
     type: String,
-    minlength: 10,
-    maxlength: 500,
+    minlength: 4,
+    maxlength: 200,
     required: [true, 'Requiere contenido para la reseña'],
   },
   rating: {
@@ -14,11 +14,13 @@ const ReviewSchema = new mongoose.Schema({
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
+    required: true,
   },
-  reviewSubject: {
+  worker: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'worker',
+    required: true,
   },
 });
 
-module.exports = mongoose.model('Review', ReviewSchema);
+module.exports = mongoose.model('review', ReviewSchema);

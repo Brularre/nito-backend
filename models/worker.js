@@ -28,7 +28,7 @@ const WorkerSchema = new Schema({
     default: 'No ingresado',
   },
   location: {
-    type: [String],
+    type: [Number],
     default: 'No ingresado',
   },
   creator: {
@@ -37,12 +37,12 @@ const WorkerSchema = new Schema({
   },
   reviews: {
     type: [mongoose.Schema.Types.ObjectId],
-    ref: 'user',
+    ref: 'review',
     default: [],
   },
   ratings: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: 'user',
+    type: [mongoose.Schema.Types.Number],
+    ref: 'review',
     default: [],
   },
   createdAt: {
@@ -51,4 +51,4 @@ const WorkerSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Worker', WorkerSchema);
+module.exports = mongoose.model('worker', WorkerSchema);

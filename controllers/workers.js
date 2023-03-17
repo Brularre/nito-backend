@@ -5,6 +5,10 @@ const ValidationError = require('../errors/validation-err');
 
 function getWorkers(req, res, next) {
   Worker.find({})
+    .populate({
+      path: 'reviews',
+      populate: { path: 'creator' },
+    })
     .then((workers) => res.send({ data: workers }))
     .catch(next);
 }
