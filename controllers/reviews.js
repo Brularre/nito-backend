@@ -19,14 +19,14 @@ async function createReview(req, res, next) {
       creator,
       worker: req.params.id,
     });
-    const worker = await Worker.findOneAndUpdate(
+    await Worker.findOneAndUpdate(
       { _id: req.params.id },
       { $addToSet: { reviews: review._id, ratings: rating } },
       { new: true },
     ).orFail(() => {
       throw new NotFoundError('No se encuentra objeto con esa id');
     });
-    res.status(201).send(worker);
+    res.status(201).send(review);
   } catch (error) {
     next(error);
   }
