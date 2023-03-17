@@ -13,7 +13,7 @@ const ValidationError = require('../errors/validation-err');
 
 function getUsers(req, res, next) {
   User.find({})
-    .then((users) => res.send({ data: users }))
+    .then((users) => res.send({ users }))
     .catch(next);
 }
 
@@ -26,7 +26,7 @@ function getUser(req, res, next) {
       if (!user) {
         throw new RequestError('Hay un problema con la solicitud');
       }
-      res.send({ data: user });
+      res.send({ user });
     })
     .catch(next);
 }
@@ -37,7 +37,7 @@ function getCurrentUser(req, res, next) {
       if (!user) {
         throw new RequestError('Hay un problema con la solicitud');
       }
-      res.send({ data: user });
+      res.send({ user });
     })
     .catch(next);
 }
@@ -47,7 +47,7 @@ function createUser(req, res, next) {
   bcrypt
     .hash(req.body.password, 10)
     .then((password) => User.create({ name, email, password }))
-    .then((user) => res.status(201).send({ data: user }))
+    .then((user) => res.status(201).send({ user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         throw new ValidationError('Hay un problema con los datos');

@@ -26,7 +26,7 @@ async function createReview(req, res, next) {
     ).orFail(() => {
       throw new NotFoundError('No se encuentra objeto con esa id');
     });
-    res.status(201).send({ data: worker });
+    res.status(201).send({ worker });
   } catch (error) {
     next(error);
   }

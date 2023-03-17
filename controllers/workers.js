@@ -9,7 +9,7 @@ function getWorkers(req, res, next) {
       path: 'reviews',
       populate: { path: 'creator' },
     })
-    .then((workers) => res.send({ data: workers }))
+    .then((workers) => res.send({ workers }))
     .catch(next);
 }
 
@@ -22,7 +22,7 @@ function getWorker(req, res, next) {
       if (!worker) {
         throw new RequestError('Hay un problema con la solicitud');
       }
-      res.send({ data: worker });
+      res.send({ worker });
     })
     .catch(next);
 }
@@ -61,7 +61,7 @@ function editWorker(req, res, next) {
       if (!user) {
         throw new RequestError('Hay un problema con la solicitud');
       }
-      res.send({ data: user });
+      res.send({ user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
