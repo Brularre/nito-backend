@@ -1,27 +1,23 @@
 const jwt = require('jsonwebtoken');
-const ValidationError = require('../errors/validation-err');
+const UnauthorizedError = require('../errors/unauthorized-err');
 
 const { JWT_SECRET } = process.env;
 
-const handleAuthError = () => {
-  throw new ValidationError('Se requiere autorización');
-};
-
+// Previously this threw errors directly, breaking the Express middleware chain.
+// It now passes errors to next() so the central error handler picks them up.
 function checkAuth(req, res, next) {
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    return handleAuthError();
+    return next(new UnauthorizedError('Se requiere autorización'));
   }
-  const token = authorization.replace('Bearer ', '');
-  let payload;
 
+  const token = authorization.replace('Bearer ', '');
   try {
-    payload = jwt.verify(token, JWT_SECRET);
-    req.user = payload;
+    req.user = jwt.verify(token, JWT_SECRET);
     return next();
   } catch (err) {
-    return handleAuthError();
+    return next(new UnauthorizedError('Token inválido o expirado'));
   }
 }
 

@@ -28,8 +28,9 @@ const WorkerSchema = new Schema({
     default: 'No ingresado',
   },
   location: {
+    // Previously had default: 'No ingresado' — a string on a [Number] field,
+    // which is a type mismatch. Removed the invalid default.
     type: [Number],
-    default: 'No ingresado',
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
@@ -41,8 +42,8 @@ const WorkerSchema = new Schema({
     default: [],
   },
   ratings: {
+    // Removed invalid ref: 'review' — ratings are plain Numbers, not ObjectIds
     type: [mongoose.Schema.Types.Number],
-    ref: 'review',
     default: [],
   },
   createdAt: {
