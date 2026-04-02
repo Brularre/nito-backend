@@ -2,30 +2,34 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const isEmail = require('validator/lib/isEmail');
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    minlength: 2,
-    maxlength: 40,
-    required: [true, 'Requiere un nombre para el usuario'],
-  },
-  email: {
-    type: String,
-    lowercase: true,
-    unique: true,
-    required: [true, 'Requiere un correo electrónico'],
-    validate: {
-      validator: (v) => isEmail(v),
-      message: 'Formato de correo electrónico incorrecto',
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      minlength: 2,
+      maxlength: 40,
+      required: [true, 'Requiere un nombre para el usuario'],
+    },
+    email: {
+      type: String,
+      lowercase: true,
+      unique: true,
+      required: [true, 'Requiere un correo electrónico'],
+      validate: {
+        validator: (v) => isEmail(v),
+        message: 'Formato de correo electrónico incorrecto',
+      },
+    },
+    password: {
+      type: String,
+      required: [true, 'Requiere una contraseña'],
+      minlength: 6,
+      select: false,
     },
   },
-  password: {
-    type: String,
-    required: [true, 'Requiere una contraseña'],
-    minlength: 6,
-    select: false,
-  },
-});
+  // Added timestamps
+  { timestamps: true },
+);
 
 userSchema.statics.findUserByCredentials = function findUserByCredentials(
   email,
